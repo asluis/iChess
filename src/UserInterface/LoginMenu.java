@@ -20,8 +20,10 @@ public class LoginMenu extends GridPane {
 		password = new Label("Password: ");
 		loginConfirm = new Button("Login");
 		
-		usernameField = new TextField("Username");
-		passwordField = new TextField("Password");
+		usernameField = new TextField();
+		usernameField.setPromptText("Username");
+		passwordField = new TextField();
+		passwordField.setPromptText("Password");
 		login.setFont(new Font("Arial", 40));
 		username.setFont(new Font("Arial", 40));
 		password.setFont(new Font("Arial", 40));
