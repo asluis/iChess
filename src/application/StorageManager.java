@@ -1,8 +1,10 @@
 package application;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * StorageManager is a class designed to manage iChess data within .txt files. The data is expected to be comma separated values (csv).
@@ -32,6 +34,18 @@ public class StorageManager {
 		this.filename = filename.length() > 0 ? filename : DEFAULT_FILE_NAME;
 		this.numItemsPerRow = numItemsPerRow > 0 ? numItemsPerRow : USER_NUM_ATTRIBUTES;
 	}
+	
+	/**
+	 * Returns a scanner loaded with the entire file.
+	 * @return scanner if successful, null if not possible
+	 */
+	public Scanner getScanner() {
+		try {
+			return new Scanner(new File(filename));
+		} catch (FileNotFoundException e) {
+			return null;
+		}
+	}
 
 	/**
 	 * writes values to the current file storage. Must be one line at a time
@@ -52,9 +66,6 @@ public class StorageManager {
 			e.printStackTrace();
 			return false;
 		}
-		
-		
-		
 		return true;
 	}
 	
