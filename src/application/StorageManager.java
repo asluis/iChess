@@ -76,8 +76,9 @@ public class StorageManager {
 	}
 
 	/**
-	 * Ensures values entered are in csv format. Expected format: - Values separated
-	 * by comma - Number of values entered matches the expected amount
+	 * Ensures values entered are in csv format. Expected format: 
+	 * 		- Values separated by comma
+	 * 		- Number of values entered matches the expected amount
 	 * 
 	 * @param str
 	 * @return true if valid, false if not
