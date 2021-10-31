@@ -1,6 +1,7 @@
 package application;
 
 import UserInterface.LoginMenu;
+import controller.Controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -8,6 +9,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
+		
+		Controller ctrl = new Controller();
+		
 		try {
 			primaryStage.setTitle("iChess");
 			primaryStage.setHeight(1000);
