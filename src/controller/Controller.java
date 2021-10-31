@@ -24,7 +24,7 @@ public class Controller {
 	public Controller(Stage primaryStage) {
 		datastore = new StorageManager();
 		stage = primaryStage;
-		currScene = new Scene(new StartMenu());
+		currScene = new Scene(new StartMenu(this));
 	}
 	
 	/**
