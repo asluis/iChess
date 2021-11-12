@@ -1,9 +1,11 @@
 package UserInterface;
 
 import javafx.scene.layout.*;
+import controller.Controller;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 
 public class LoginMenu extends GridPane {
@@ -13,8 +15,10 @@ public class LoginMenu extends GridPane {
 	private Button loginConfirm;
 	private TextField usernameField;
 	private TextField passwordField;
+	Controller ctrl;
 	
-	public LoginMenu() {
+	public LoginMenu(Controller controller) {
+		this.ctrl = controller;
 		login = new Label ("iChess login: ");
 		username = new Label("Username: ");
 		password = new Label("Password: ");
@@ -28,6 +32,8 @@ public class LoginMenu extends GridPane {
 		username.setFont(new Font("Arial", 40));
 		password.setFont(new Font("Arial", 40));
 		loginConfirm.setPrefSize(150, 50);
+		
+		loginConfirm.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new ChessBoardView(controller)));
 		
 		setAlignment(Pos.CENTER);
 		setVgap(10);

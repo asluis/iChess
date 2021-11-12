@@ -19,11 +19,11 @@ public class StartMenu extends VBox {
 		iChess.setFont(new Font("Arial", 70));
 		
 		login = new Button("Login");
-		login.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new LoginMenu()));
+		login.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new LoginMenu(controller)));
 		
 		signup = new Button("Create Account");
 		
-		signup.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new CreateAccountMenu()));
+		signup.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new CreateAccountMenu(controller)));
 		
 		login.setPrefSize(300, 100);
 		signup.setPrefSize(300, 100);

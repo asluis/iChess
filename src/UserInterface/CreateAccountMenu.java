@@ -1,9 +1,11 @@
 package UserInterface;
 
 import javafx.scene.layout.*;
+import controller.Controller;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 
 public class CreateAccountMenu extends GridPane {
@@ -15,8 +17,10 @@ public class CreateAccountMenu extends GridPane {
 	private TextField usernameField;
 	private TextField passwordField;
 	private TextField confirmPasswordField;
+	Controller ctrl;
 	
-	public CreateAccountMenu() {
+	public CreateAccountMenu(Controller controller) {
+		this.ctrl = controller;
 		createAccountPrompt = new Label("Create account: ");
 		username = new Label("Username: ");
 		password = new Label("Password: ");
@@ -35,6 +39,8 @@ public class CreateAccountMenu extends GridPane {
 		confirmPassword.setFont(new Font("Arial", 40));
 		createAccountConfirmation.setPrefSize(150, 50);
 		
+		createAccountConfirmation.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new ChessBoardView(controller)));
+		
 		setAlignment(Pos.CENTER);
 		setVgap(10);
 		setHgap(10);
@@ -48,7 +54,6 @@ public class CreateAccountMenu extends GridPane {
 		add(passwordField, 1, 3);
 		add(confirmPasswordField, 1, 4);
 		add(createAccountConfirmation, 1, 6);
-		
 		
 	}
 }
