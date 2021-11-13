@@ -52,6 +52,26 @@ public class User {
 	}
 
 	/**
+	 * Searches the textfile containing the user data and extracts relevant info to create
+	 * an instance of the user
+	 * @param data - StorageManager
+	 * @param username - Username of user we want to extract
+	 * @return - Returns instance of username, or null if doesn't exist
+	 */
+	public static User findUser(StorageManager data, String username){
+		Scanner scanner = data.getScanner();
+		while(scanner.hasNext()){
+			String[] info = scanner.next().split(",");
+			if(info[0].equals(username)){ // meaning we found the user's data
+				scanner.close();
+				return new User(info[0], Integer.parseInt(info[2]), Integer.parseInt(info[3])); // username,wins,losses
+			}
+		}
+		scanner.close();
+		return null;
+	}
+
+	/**
 	 * Returns this User's username.
 	 * @return username
 	 */
