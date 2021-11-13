@@ -23,8 +23,10 @@
 hs_err_pid*
 /bin/
 
-#eclipse files
+#ide files
 *.project
 *.classpath
 *.settings
 *.DS_Store
+*.idea/
+iChess.iml
