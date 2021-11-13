@@ -1,6 +1,7 @@
 package controller;
 
 import UserInterface.StartMenu;
+import application.ChessBoard;
 import application.StorageManager;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,6 +16,11 @@ public class Controller {
 	private StorageManager datastore;
 	private Stage stage;
 	private Scene currScene;
+	private ChessBoard gameBoard;
+	
+	public ChessBoard getGameBoard() {
+		return gameBoard;
+	}
 	
 	/**
 	 * Controller constructor requires a stage to enable Controller to change the visible scene.
@@ -23,6 +29,7 @@ public class Controller {
 	 */
 	public Controller(Stage primaryStage) {
 		datastore = new StorageManager();
+		gameBoard = new ChessBoard();
 		stage = primaryStage;
 		currScene = new Scene(new StartMenu(this));
 	}
