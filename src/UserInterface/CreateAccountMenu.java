@@ -1,5 +1,6 @@
 package UserInterface;
 
+import application.User;
 import javafx.scene.layout.*;
 import controller.Controller;
 import javafx.geometry.Pos;
@@ -45,10 +46,11 @@ public class CreateAccountMenu extends GridPane {
 			String p1 = passwordField.getText();
 			String p2 = confirmPasswordField.getText();
 
-			if(p1.equals(p2) && uName.length() >= 1){
+
+			// if both passwords are the same, something was entered as a username, and username doesn't exist
+			if(p1.equals(p2) && uName.length() >= 1 && !User.userExists(ctrl.getDatastore(), uName)){
 				String write = uName + "," + p1 + "," + "0" + "," + "0";
-				boolean writeStatus = ctrl.getDatastore().write(write);
-				System.out.println("Account creation: " +  writeStatus);
+				ctrl.getDatastore().write(write);
 				ctrl.setScene(new ChessBoardView(controller));
 			}else{
 				System.out.println("BAD"); // TODO: Create UI for notifying if error
