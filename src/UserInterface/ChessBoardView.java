@@ -37,6 +37,8 @@ public class ChessBoardView extends GridPane {
 		int k = 1;
         add(opponent, 0, 0);
         add(you, 10, 7);
+        
+        // Loop to create checker board.
         for(int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 chessBoard[i + 1][j + 1] = new Button("");
@@ -51,13 +53,17 @@ public class ChessBoardView extends GridPane {
                 chessBoard[i + 1][j + 1].setMinSize((100),(100));
             }
         }
+        
+        //Sets font color and size
         you.setTextFill(Color.web("#000000"));
         you.setFont(Font.font("Arial", 50));
-        
         opponent.setTextFill(Color.web("#000000"));
         opponent.setFont(Font.font("Arial", 50));
 	}
 	
+	/**
+	 * Updates board with images of pieces at proper place based on game state.
+	 */
 	private void updateBoard() {
 		for(int i = 1; i < 9; i++) {
             for(int j = 1; j < 9; j++) {
