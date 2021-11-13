@@ -39,7 +39,21 @@ public class CreateAccountMenu extends GridPane {
 		confirmPassword.setFont(new Font("Arial", 40));
 		createAccountConfirmation.setPrefSize(150, 50);
 		
-		createAccountConfirmation.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new ChessBoardView(controller)));
+		createAccountConfirmation.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+			boolean isValid = false;
+			String uName = usernameField.getText();
+			String p1 = passwordField.getText();
+			String p2 = confirmPasswordField.getText();
+
+			if(p1.equals(p2) && uName.length() >= 1){
+				String write = uName + "," + p1 + "," + "0" + "," + "0";
+				boolean writeStatus = ctrl.getDatastore().write(write);
+				System.out.println("Account creation: " +  writeStatus);
+				ctrl.setScene(new ChessBoardView(controller));
+			}else{
+				System.out.println("BAD"); // TODO: Create UI for notifying if error
+			}
+		});
 		
 		setAlignment(Pos.CENTER);
 		setVgap(10);
