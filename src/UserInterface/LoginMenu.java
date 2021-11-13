@@ -1,5 +1,6 @@
 package UserInterface;
 
+import application.User;
 import javafx.scene.layout.*;
 import controller.Controller;
 import javafx.geometry.Pos;
@@ -33,7 +34,21 @@ public class LoginMenu extends GridPane {
 		password.setFont(new Font("Arial", 40));
 		loginConfirm.setPrefSize(150, 50);
 		
-		loginConfirm.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new ChessBoardView(controller)));
+		loginConfirm.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+
+			String username = usernameField.getText();
+			String password = passwordField.getText();
+
+			if(username.length() >= 1 && password.length() >= 1 && User.userExists(ctrl.getDatastore(), username)){
+
+				User user = User.findUser(ctrl.getDatastore(), username);
+				System.out.println("Adding " + user.getUsername() + " to controller");
+				ctrl.setCurrUser(user);
+				ctrl.setScene(new ChessBoardView(controller));
+			}else{
+				System.out.println("Bad input for login");
+			}
+		});
 		
 		setAlignment(Pos.CENTER);
 		setVgap(10);
@@ -47,4 +62,6 @@ public class LoginMenu extends GridPane {
 		add(passwordField, 2, 3);
 		add(loginConfirm, 1, 6);
 	}
+
+
 }
