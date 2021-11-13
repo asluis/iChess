@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Scanner;
+
 public class User {
 
 	private String username;
@@ -27,6 +29,26 @@ public class User {
 		username = uName;
 		wins = 0;
 		losses = 0;
+	}
+
+	/**
+	 * Checks entire database to see if username exists
+	 * @param data - database
+	 * @param username - username to compare against database
+	 */
+	public static boolean userExists(StorageManager data, String username){
+		Scanner scanner = data.getScanner();
+
+		while(scanner.hasNext()){
+			String curr = scanner.next();
+			String[] userInfo = curr.split(",");
+			if(userInfo[0].equals(username)){
+				scanner.close();
+				return true;
+			}
+		}
+		scanner.close();
+		return false;
 	}
 
 	/**
