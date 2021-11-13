@@ -3,6 +3,7 @@ package controller;
 import UserInterface.StartMenu;
 import application.ChessBoard;
 import application.StorageManager;
+import application.User;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -16,8 +17,10 @@ public class Controller {
 	private StorageManager datastore;
 	private Stage stage;
 	private Scene currScene;
+	private User currUser;
 	private ChessBoard gameBoard;
-	
+  
+  
 	public ChessBoard getGameBoard() {
 		return gameBoard;
 	}
@@ -32,6 +35,15 @@ public class Controller {
 		gameBoard = new ChessBoard();
 		stage = primaryStage;
 		currScene = new Scene(new StartMenu(this));
+		currUser = null;
+	}
+
+	/**
+	 * returns this instance's storage manager
+	 * @return
+	 */
+	public StorageManager getDatastore() {
+		return this.datastore;
 	}
 	
 	/**
@@ -42,6 +54,22 @@ public class Controller {
 		currScene = new Scene(view);
 		stage.setScene(currScene);
 		start();
+	}
+
+	/**
+	 * Returns the current user
+	 * @return
+	 */
+	public User getCurrUser(){
+		return this.currUser;
+	}
+
+	/**
+	 * Sets the current user to the parameter
+	 * @param user
+	 */
+	public void setCurrUser(User user){
+		currUser = user;
 	}
 	
 	/**

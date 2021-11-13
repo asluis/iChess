@@ -29,4 +29,8 @@ hs_err_pid*
 *.settings
 *.DS_Store
 *.idea/
+*out/
 iChess.iml
+
+# Database files
+*.txt

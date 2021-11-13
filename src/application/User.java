@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Scanner;
+
 public class User {
 
 	private String username;
@@ -27,6 +29,46 @@ public class User {
 		username = uName;
 		wins = 0;
 		losses = 0;
+	}
+
+	/**
+	 * Checks entire database to see if username exists
+	 * @param data - database
+	 * @param username - username to compare against database
+	 */
+	public static boolean userExists(StorageManager data, String username){
+		Scanner scanner = data.getScanner();
+
+		while(scanner.hasNext()){
+			String curr = scanner.next();
+			String[] userInfo = curr.split(",");
+			if(userInfo[0].equals(username)){
+				scanner.close();
+				return true;
+			}
+		}
+		scanner.close();
+		return false;
+	}
+
+	/**
+	 * Searches the textfile containing the user data and extracts relevant info to create
+	 * an instance of the user
+	 * @param data - StorageManager
+	 * @param username - Username of user we want to extract
+	 * @return - Returns instance of username, or null if doesn't exist
+	 */
+	public static User findUser(StorageManager data, String username){
+		Scanner scanner = data.getScanner();
+		while(scanner.hasNext()){
+			String[] info = scanner.next().split(",");
+			if(info[0].equals(username)){ // meaning we found the user's data
+				scanner.close();
+				return new User(info[0], Integer.parseInt(info[2]), Integer.parseInt(info[3])); // username,wins,losses
+			}
+		}
+		scanner.close();
+		return null;
 	}
 
 	/**
