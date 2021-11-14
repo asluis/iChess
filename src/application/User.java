@@ -38,7 +38,7 @@ public class User {
 	 */
 	public static boolean userExists(StorageManager data, String username){
 		Scanner scanner = data.getScanner();
-
+		if(scanner == null) return false;
 		while(scanner.hasNext()){
 			String curr = scanner.next();
 			String[] userInfo = curr.split(",");
@@ -60,6 +60,7 @@ public class User {
 	 */
 	public static User findUser(StorageManager data, String username){
 		Scanner scanner = data.getScanner();
+		if(scanner == null) return null;
 		while(scanner.hasNext()){
 			String[] info = scanner.next().split(",");
 			if(info[0].equals(username)){ // meaning we found the user's data
