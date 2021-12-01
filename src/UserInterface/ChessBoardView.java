@@ -72,7 +72,10 @@ public class ChessBoardView extends GridPane {
 	
 	public void setActiveTile(Tile input) {
 		if (this.activeTile != null) {
-			this.activeTile.setStyle(null);
+			if (((this.activeTile.getX() + this.activeTile.getY()) % 2 != 0 ))
+				this.activeTile.setStyle("-fx-background-color: #ffffff;");
+			if (((this.activeTile.getX() + this.activeTile.getY()) % 2 == 0 ))
+				this.activeTile.setStyle("-fx-background-color: #7f7f7f;");
 		}
 		
 		this.activeTile = input;
