@@ -33,7 +33,7 @@ public class LoginMenu extends GridPane {
 		password.setFont(new Font("Arial", 40));
 		loginConfirm.setPrefSize(150, 50);
 		
-		loginConfirm.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new ChessBoardView(controller)));
+		loginConfirm.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> ctrl.setScene(new ChessBoardView(true, controller)));
 		
 		setAlignment(Pos.CENTER);
 		setVgap(10);
