@@ -14,8 +14,8 @@ public class Tile extends Button {
 		this.x = x;
 		this.y = y;
 		this.piece = null;
-		this.setMinSize((50),(50));
-		this.setMaxSize((50), (50));
+		this.setMinSize((75),(75));
+		this.setMaxSize((75), (75));
 		
 		if(white) {
 			this.setStyle("-fx-background-color: #ffffff;");
