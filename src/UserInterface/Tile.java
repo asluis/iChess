@@ -54,6 +54,7 @@ public class Tile extends Button {
 	public Piece removePiece() {
 		Piece temp = this.piece;
 		this.setPiece(null);
+		this.setGraphic(null);
 		return temp;
 	}
 
