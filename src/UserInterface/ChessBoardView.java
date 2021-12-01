@@ -2,6 +2,7 @@ package UserInterface;
 
 import javafx.scene.layout.GridPane;
 import application.*;
+import javafx.scene.image.ImageView;
 import controller.Controller;
 
 public class ChessBoardView extends GridPane {
@@ -115,6 +116,7 @@ public class ChessBoardView extends GridPane {
 		Tile oldTile = tiles[input.getOldX()][input.getOldY()];
 		Tile newTile = tiles[input.getNewX()][input.getNewY()];
 		newTile.setPiece(oldTile.removePiece());
+		oldTile.setGraphic(null);
 		return true;
 	}
 	
