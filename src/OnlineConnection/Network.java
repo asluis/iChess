@@ -9,7 +9,7 @@ import java.net.Socket;
 import java.util.function.Consumer;
 
 public abstract class Network {
-	private ConnectionThread connect;
+	private ConnectionThread connect = new ConnectionThread();
 	private Consumer<Serializable> onRecieveCallback;
 	
 	public Network(Consumer<Serializable> onRecieveCallback) {
@@ -28,36 +28,35 @@ public abstract class Network {
 	protected abstract int getPort();
 	
 	private class ConnectionThread extends Thread {
-		private Socket socket;
-		private ObjectOutputStream out;
-		
-		public void run() {
-			try (
-					ServerSocket server = isServer() ? new ServerSocket(getPort()) : null;
-					
-					Socket socket = isServer() ? server.accept() : new Socket(getIP(), getPort());
-					
-					ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-					
-					ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-				) {
-					onRecieveCallback.accept("Connection Made");
-					this.socket = socket;
-					this.out = out;
-					
-					socket.setTcpNoDelay(true);
-					
-					while (true) {
-						Serializable data = (Serializable) in.readObject();
-						onRecieveCallback.accept(data);
-					}		
-			}
-			catch (ConnectException x) {
-				onRecieveCallback.accept("Error in connecting to server");
-			}
-			catch (Exception e) {
-				onRecieveCallback.accept("Connection closed");
-			}
-		}
-	}
+        private Socket socket;
+        private ObjectOutputStream out;
+        @Override
+        public void run() {
+            try (
+                ServerSocket server = isServer() ? new ServerSocket(getPort()) : null;
+                Socket socket = isServer() ? server.accept() : new Socket(getIP(), getPort());
+            	
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+            ) {
+                onRecieveCallback.accept("Connection Established");
+                this.socket = socket;
+                this.out = out;
+
+                // Disable message buffering
+                socket.setTcpNoDelay(true);
+
+                while (true) {
+                    Serializable data = (Serializable) in.readObject();
+                    onRecieveCallback.accept(data);
+                }
+            }
+            catch (ConnectException e) {
+                onRecieveCallback.accept("Error connecting to server");
+            }
+            catch (Exception e) {
+                onRecieveCallback.accept("Connection closed");
+            }
+        }
+    }
 }

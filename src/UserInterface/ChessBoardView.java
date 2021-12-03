@@ -1,10 +1,14 @@
 package UserInterface;
 
 import javafx.scene.layout.GridPane;
+import ChessBoard.MoveData;
 import ChessBoard.Bishop;
 import ChessBoard.King;
 import ChessBoard.Knight;
 import ChessBoard.MoveData;
+import application.*;
+
+
 import ChessBoard.Pawn;
 import ChessBoard.Queen;
 import ChessBoard.Rook;
@@ -103,8 +107,9 @@ public class ChessBoardView extends GridPane {
 			data = new MoveData(activeTile.getX(), activeTile.getY(), x, y);
 			
 			if (this.makeMove(data)) {
-				//this.setDisable(true);
-				
+				if(this.sendMove(data)) {
+					this.setDisable(true);
+				}
 			}
 			this.setActiveTile(null);
 			
@@ -118,6 +123,25 @@ public class ChessBoardView extends GridPane {
 		}
 	}
 	
+	protected boolean sendMove(MoveData info) {
+		try {
+			Main.connection.sendData(info);
+		} catch (Exception e) {
+			System.err.println("Error: Failed to send move");
+	        return false;
+		}
+		
+		return true;
+	}
+	
+	public void processOpponentMove(MoveData info)
+    {
+        if (makeMove(info))
+        {
+            this.setDisable(false);
+        }
+    }
+	
 	protected boolean makeMove(MoveData input) {
 		
 		Tile oldTile = tiles[input.getOldX()][input.getOldY()];
@@ -125,5 +149,6 @@ public class ChessBoardView extends GridPane {
 		newTile.setPiece(oldTile.removePiece());
 		return true;
 	}
+	
 	
 }
