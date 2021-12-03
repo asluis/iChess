@@ -1,6 +1,13 @@
 package UserInterface;
 
 import javafx.scene.layout.GridPane;
+import ChessBoard.Bishop;
+import ChessBoard.King;
+import ChessBoard.Knight;
+import ChessBoard.MoveData;
+import ChessBoard.Pawn;
+import ChessBoard.Queen;
+import ChessBoard.Rook;
 import application.*;
 import javafx.scene.image.ImageView;
 import controller.Controller;

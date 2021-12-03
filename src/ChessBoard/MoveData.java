@@ -1,4 +1,4 @@
-package application;
+package ChessBoard;
 import java.io.Serializable;
 
 public class MoveData implements Serializable {

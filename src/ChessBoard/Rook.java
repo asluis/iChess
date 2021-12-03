@@ -1,4 +1,4 @@
-package application;
+package ChessBoard;
 
 public class Rook extends Piece {
 	public Rook(boolean x) {

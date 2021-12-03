@@ -1,8 +1,8 @@
 package UserInterface;
 
+import ChessBoard.Piece;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import application.Piece;
 
 public class Tile extends Button {
 	private int x;
