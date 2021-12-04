@@ -84,6 +84,7 @@ public class CreateAccountMenu extends GridPane {
 				System.out.println("User created\n uName: " + uName + " password: " + p1 + "wins: " + 0 + " losses: " +
 						"isClient: " + isClient);
 				ctrl.setScene(ctrl.chessBoard);
+				ctrl.startGame();
 			}else{
 				System.out.println("BAD"); // TODO: Create UI for notifying if error
 			}

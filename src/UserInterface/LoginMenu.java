@@ -74,6 +74,7 @@ public class LoginMenu extends GridPane {
 				user.setServerIP(serverIPString);
 				ctrl.setCurrUser(user);
 				ctrl.setScene(ctrl.chessBoard);
+				ctrl.startGame();
 			}else{
 				System.out.println("Bad input for login");
 			}

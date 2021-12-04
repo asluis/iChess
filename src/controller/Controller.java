@@ -57,7 +57,7 @@ public class Controller {
 	}
 
 	private Server createServer() {
-		return new Server("98.37.127.113", 55555, data -> {
+		return new Server(currUser.getServerIP(), 55555, data -> {
 			Platform.runLater(() -> {
 				if (data instanceof MoveData)
 				{
@@ -68,7 +68,7 @@ public class Controller {
 	}
 
 	private Client createClient() {
-		return new Client("98.37.127.113", 55555, data -> {
+		return new Client(currUser.getClientIP(), 55555, data -> {
 			Platform.runLater(() -> {
 				if (data instanceof MoveData)
 				{
