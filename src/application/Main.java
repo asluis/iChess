@@ -18,9 +18,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		
 		// Create server first, the comment out server and createClient with the board disabled.
-		connection = createServer();
+		// connection = createServer();
 		
-		//connection = createClient();
+		connection = createClient();
 		//chessBoard.setDisable(true);
 		
 		try {
@@ -46,7 +46,7 @@ public class Main extends Application {
 	}
 	
 	private Server createServer() {
-        return new Server("", 5555, data -> {
+        return new Server("98.37.127.113", 55555, data -> {
             Platform.runLater(() -> {
                 if (data instanceof MoveData)
                 {
@@ -55,9 +55,9 @@ public class Main extends Application {
             });
         });
     }
-	
+
 	 private Client createClient() {
-	        return new Client("127.0.0.1", 5555, data -> {
+	        return new Client("98.37.127.113", 55555, data -> {
 	            Platform.runLater(() -> {
 	                if (data instanceof MoveData)
 	                {
