@@ -28,6 +28,8 @@ public class LoginMenu extends GridPane {
 		loginConfirm = new Button("Login");
 
 		HBox hbox = new HBox();
+		hbox.setSpacing(10);
+		hbox.setPadding(new Insets(10));
 		Label userMode = new Label("Are you acting as the server or client?");
 		ToggleGroup group = new ToggleGroup();
 		clientToggle = new ToggleButton("Client");
