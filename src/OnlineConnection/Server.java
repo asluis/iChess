@@ -14,5 +14,4 @@ public class Server extends Network {
 	protected boolean isServer() { return true; }
 	protected String getIP() { return null; }
 	protected int getPort() { return port; }
-
 }
