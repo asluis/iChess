@@ -18,6 +18,8 @@ public class LoginMenu extends GridPane {
 	private TextField passwordField;
 	private ToggleButton clientToggle;
 	private ToggleButton serverToggle;
+	private TextField clientIP;
+	private TextField serverIP;
 	Controller ctrl;
 	
 	public LoginMenu(Controller controller) {
@@ -49,17 +51,27 @@ public class LoginMenu extends GridPane {
 		username.setFont(new Font("Arial", 40));
 		password.setFont(new Font("Arial", 40));
 		loginConfirm.setPrefSize(150, 50);
+
+		clientIP = new TextField();
+		clientIP.setPromptText("Enter Client IP");
+
+		serverIP = new TextField();
+		serverIP.setPromptText("Enter Server IP");
 		
 		loginConfirm.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-
+			String clientIPString = clientIP.getText();
+			String serverIPString = serverIP.getText();
 			String username = usernameField.getText();
 			String password = passwordField.getText();
 
-			if(username.length() >= 1 && password.length() >= 1 && User.userExists(ctrl.getDatastore(), username)){
+			if(username.length() >= 1 && password.length() >= 1 && User.userExists(ctrl.getDatastore(), username)
+				&& clientIPString.length() > 0 && serverIPString.length() > 0){
 
 				User user = User.findUser(ctrl.getDatastore(), username);
 				System.out.println("Adding " + user.getUsername() + " to controller");
 				user.setClient(clientToggle.isSelected() ? true : false);
+				user.setClientIP(clientIPString);
+				user.setServerIP(serverIPString);
 				ctrl.setCurrUser(user);
 				ctrl.setScene(ctrl.chessBoard);
 			}else{
@@ -79,5 +91,7 @@ public class LoginMenu extends GridPane {
 		add(passwordField, 2, 3);
 		add(loginConfirm, 1, 6);
 		add(hbox, 1, 7);
+		add(serverIP, 1, 10);
+		add(clientIP, 1, 11);
 	}
 }

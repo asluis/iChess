@@ -20,6 +20,8 @@ public class CreateAccountMenu extends GridPane {
 	private TextField confirmPasswordField;
 	private ToggleButton clientToggle;
 	private ToggleButton serverToggle;
+	private TextField clientIP;
+	private TextField serverIP;
 	Controller ctrl;
 	
 	public CreateAccountMenu(Controller controller) {
@@ -46,6 +48,12 @@ public class CreateAccountMenu extends GridPane {
 		clientToggle.setToggleGroup(group);
 		serverToggle.setToggleGroup(group);
 
+		clientIP = new TextField();
+		clientIP.setPromptText("Enter Client IP");
+
+		serverIP = new TextField();
+		serverIP.setPromptText("Enter Server IP");
+
 		clientToggle.setSelected(true);
 		hbox.getChildren().addAll(userMode, clientToggle, serverToggle);
 		
@@ -56,16 +64,23 @@ public class CreateAccountMenu extends GridPane {
 		createAccountConfirmation.setPrefSize(150, 50);
 
 		createAccountConfirmation.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+			String clientIPString = clientIP.getText();
+			String serverIPString = serverIP.getText();
+
 			String uName = usernameField.getText();
 			String p1 = passwordField.getText();
 			String p2 = confirmPasswordField.getText();
 			boolean isClient = clientToggle.isSelected() ? true : false;
 
 			// if both passwords are the same, something was entered as a username, and username doesn't exist
-			if(p1.equals(p2) && uName.length() >= 1 && !User.userExists(ctrl.getDatastore(), uName)){
+			if(p1.equals(p2) && uName.length() >= 1 && !User.userExists(ctrl.getDatastore(), uName)
+					&& clientIPString.length() > 0 && serverIPString.length() > 0){
 				String write = uName + "," + p1 + "," + "0" + "," + "0";
 				ctrl.getDatastore().write(write);
 				ctrl.setCurrUser(new User(uName, 0, 0, isClient));
+				ctrl.getCurrUser().setClient(clientToggle.isSelected() ? true : false);
+				ctrl.getCurrUser().setClientIP(clientIPString);
+				ctrl.getCurrUser().setServerIP(serverIPString);
 				System.out.println("User created\n uName: " + uName + " password: " + p1 + "wins: " + 0 + " losses: " +
 						"isClient: " + isClient);
 				ctrl.setScene(ctrl.chessBoard);
@@ -87,6 +102,8 @@ public class CreateAccountMenu extends GridPane {
 		add(confirmPasswordField, 1, 4);
 		add(createAccountConfirmation, 1, 6);
 		add(hbox, 1, 9);
+		add(serverIP, 1, 10);
+		add(clientIP, 1, 11);
 		
 	}
 }

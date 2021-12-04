@@ -8,7 +8,8 @@ public class User {
 	private int wins;
 	private int losses;
 	private boolean isClient;
-	//TODO: Attach an IP address to the user
+	private String clientIP;
+	private String serverIP;
 
 	/**
 	 * Full user constructor.
@@ -128,5 +129,20 @@ public class User {
 
 	public void setClient(boolean client) {
 		isClient = client;
+	}
+	public String getClientIP() {
+		return clientIP;
+	}
+
+	public void setClientIP(String clientIP) {
+		this.clientIP = clientIP;
+	}
+
+	public String getServerIP() {
+		return serverIP;
+	}
+
+	public void setServerIP(String serverIP) {
+		this.serverIP = serverIP;
 	}
 }
