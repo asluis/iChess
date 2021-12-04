@@ -46,7 +46,7 @@ public class Main extends Application {
 	}
 	
 	private Server createServer() {
-        return new Server(5555, data -> {
+        return new Server("", 5555, data -> {
             Platform.runLater(() -> {
                 if (data instanceof MoveData)
                 {
