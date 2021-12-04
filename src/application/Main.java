@@ -17,8 +17,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		//connection = createServer();
-		connection = createClient();
+		// Create server first, the comment out server and createClient with the board disabled.
+		connection = createServer();
+		
+		//connection = createClient();
+		//chessBoard.setDisable(true);
 		
 		try {
 			connection.startConnection();
