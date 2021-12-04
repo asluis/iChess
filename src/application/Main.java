@@ -17,7 +17,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		// Create server first, the comment out server and createClient with the board disabled.
+		 //Create server first, the comment out server and createClient with the board disabled.
 		connection = createServer();
 		
 		//connection = createClient();
@@ -46,7 +46,7 @@ public class Main extends Application {
 	}
 	
 	private Server createServer() {
-        return new Server("", 5555, data -> {
+        return new Server("10.0.0.96", 55555, data -> {
             Platform.runLater(() -> {
                 if (data instanceof MoveData)
                 {
@@ -57,7 +57,7 @@ public class Main extends Application {
     }
 	
 	 private Client createClient() {
-	        return new Client("127.0.0.1", 5555, data -> {
+	        return new Client("73.158.69.56", 55555, data -> {
 	            Platform.runLater(() -> {
 	                if (data instanceof MoveData)
 	                {
