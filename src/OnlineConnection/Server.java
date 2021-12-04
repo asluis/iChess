@@ -18,7 +18,7 @@ public class Server extends Network {
     protected boolean isServer() { return true; }
 
     @Override
-    protected String getIP() { ip.equals("") ? null : ip }
+    protected String getIP() { return ip.equals("") ? null : ip; }
 
     @Override
     protected int getPort() { return port; }
