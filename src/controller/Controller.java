@@ -1,8 +1,14 @@
 package controller;
 
+import ChessBoard.MoveData;
+import OnlineConnection.Client;
+import OnlineConnection.Network;
+import OnlineConnection.Server;
+import UserInterface.ChessBoardView;
 import UserInterface.StartMenu;
 import application.StorageManager;
 import application.User;
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -17,8 +23,8 @@ public class Controller {
 	private Stage stage;
 	private Scene currScene;
 	private User currUser;
-  
-  
+	public ChessBoardView chessBoard;
+	public Network connection;
 	
 	
 	/**
@@ -29,8 +35,47 @@ public class Controller {
 	public Controller(Stage primaryStage) {
 		datastore = new StorageManager();
 		stage = primaryStage;
+		chessBoard = new ChessBoardView(true, this);
 		currScene = new Scene(new StartMenu(this));
 		currUser = null;
+	}
+
+	public void startGame(){
+		if(currUser.isClient()){
+			connection = createClient();
+		}else{
+			connection = createServer();
+		}
+
+		try {
+			connection.startConnection();
+		}
+		catch (Exception exception) {
+			System.err.println("Error: Failed to start connection");
+			System.exit(1);
+		}
+	}
+
+	private Server createServer() {
+		return new Server("98.37.127.113", 55555, data -> {
+			Platform.runLater(() -> {
+				if (data instanceof MoveData)
+				{
+					chessBoard.processOpponentMove((MoveData) data);
+				}
+			});
+		});
+	}
+
+	private Client createClient() {
+		return new Client("98.37.127.113", 55555, data -> {
+			Platform.runLater(() -> {
+				if (data instanceof MoveData)
+				{
+					chessBoard.processOpponentMove((MoveData) data);
+				}
+			});
+		});
 	}
 
 	/**

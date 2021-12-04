@@ -126,7 +126,7 @@ public class ChessBoardView extends GridPane {
 	
 	protected boolean sendMove(MoveData info) {
 		try {
-			Main.connection.sendData(info);
+			ctrl.connection.sendData(info);
 		} catch (Exception e) {
 			System.err.println("Error: Failed to send move");
 	        return false;
@@ -150,6 +150,6 @@ public class ChessBoardView extends GridPane {
 		newTile.setPiece(oldTile.removePiece());
 		return true;
 	}
-	
-	
+
+
 }

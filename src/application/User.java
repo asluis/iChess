@@ -7,18 +7,20 @@ public class User {
 	private String username;
 	private int wins;
 	private int losses;
+	private boolean isClient;
 	//TODO: Attach an IP address to the user
-	
+
 	/**
 	 * Full user constructor.
 	 * @param uName
 	 * @param wins
 	 * @param losses
 	 */
-	public User(String uName, int wins, int losses) {
+	public User(String uName, int wins, int losses, boolean isClient) {
 		this.username = uName;
 		this.wins = wins;
 		this.losses = losses;
+		this.isClient = isClient;
 	}
 	
 	/**
@@ -65,7 +67,7 @@ public class User {
 			String[] info = scanner.next().split(",");
 			if(info[0].equals(username)){ // meaning we found the user's data
 				scanner.close();
-				return new User(info[0], Integer.parseInt(info[2]), Integer.parseInt(info[3])); // username,wins,losses
+				return new User(info[0], Integer.parseInt(info[2]), Integer.parseInt(info[3]), false); // username,wins,losses, isClient
 			}
 		}
 		scanner.close();
@@ -118,5 +120,13 @@ public class User {
 	 */
 	public void setLosses(int losses) {
 		losses = losses >= 0 ? losses : 0;
+	}
+
+	public boolean isClient() {
+		return isClient;
+	}
+
+	public void setClient(boolean client) {
+		isClient = client;
 	}
 }
