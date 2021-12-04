@@ -68,6 +68,7 @@ public class Controller {
 	}
 
 	private Client createClient() {
+		chessBoard.setDisable(true);
 		return new Client(currUser.getClientIP(), 55555, data -> {
 			Platform.runLater(() -> {
 				if (data instanceof MoveData)
