@@ -9,6 +9,13 @@ public class Tile extends Button {
 	private int y;
 	private Piece piece;
 	
+	
+	/**
+	 * Constructor that creates an empty white or black tile.
+	 * @param boolean white
+	 * @param x coordinate
+	 * @param y coordinate
+	 */
 	public Tile(boolean white, int x, int y) {
 		super();
 		this.x = x;
@@ -31,8 +38,12 @@ public class Tile extends Button {
 	public int getX() { return x; }
 	public int getY() { return y; }
 	
+	/**
+	 * Checks if the tile has a piece and returns its color if there is one or an empty string if there is no piece.
+	 * @return String
+	 */
 	public String getTilePieceColor() {
-		if (getPiece() != null) {
+		if (getPiece() != null) {  // Checks that the Tile even has a piece
 			return getPiece().getColor();
 		}
 		else {
@@ -43,6 +54,11 @@ public class Tile extends Button {
 	public void setX(int a) {this.x = a; }
 	public void setY(int a) {this.y = a; }
 	
+	
+	/**
+	 * Sets a piece on the Tile and adds a graphic corresponding to the a piece to the tile.
+	 * @param Piece input
+	 */
 	public void setPiece(Piece input) {
 		this.piece = input;
 		
@@ -51,6 +67,10 @@ public class Tile extends Button {
 		}
 	}
 	
+	/**
+	 * Removes the old piece from the tile and then the function returns the piece
+	 * @return returns the old piece.
+	 */
 	public Piece removePiece() {
 		Piece temp = this.piece;
 		this.setPiece(null);

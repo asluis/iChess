@@ -10,6 +10,13 @@ public class MoveData implements Serializable {
 		newX = 0;
 		newY = 0;
 	}
+	/**
+	 * Creates a MoveData object with old and new coordinates.
+	 * @param a which is the old X coordinate of a piece.
+	 * @param b which is the old Y coordinate of a piece.
+	 * @param c which is the new X coordinate of a piece.
+	 * @param d which is the new Y coordinate of a piece.
+	 */
 	public MoveData(int a, int b, int c, int d) {
 		oldX = a;
 		oldY = b;

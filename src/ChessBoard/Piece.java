@@ -7,6 +7,9 @@ public abstract class Piece {
 	protected Image icon;
 	protected boolean color;
 	
+	/**
+	 * Returns white if color is true and black if color is false.
+	 */
 	public String getColor() {
 		String result;
 		if (this.color == true) {
@@ -20,6 +23,10 @@ public abstract class Piece {
 	
 	public Image getIcon() { return this.icon; }
 	
+	/**
+	 * Sets a piece's hasMoved variable to false and sets its icon to the corresponding icon to its color and piece name.
+	 * @param x which is the color boolean of an object
+	 */
 	public Piece(boolean x) {
 		this.color = x;
 		hasMoved = false;
@@ -30,7 +37,8 @@ public abstract class Piece {
 		
 	}
 	
-	
+	/**
+	 * Abstract function used to return the name of a chess piece
+	 */
 	public abstract String getName();
-
 }
