@@ -54,6 +54,16 @@ public class CreateAccountMenu extends GridPane {
 		serverIP = new TextField();
 		serverIP.setPromptText("Enter Server IP");
 
+		clientToggle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+			clientIP.setVisible(true);
+			serverIP.setVisible(true);
+		});
+
+		serverToggle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+			clientIP.setVisible(false);
+			serverIP.setVisible(false);
+		});
+
 		clientToggle.setSelected(true);
 		hbox.getChildren().addAll(userMode, clientToggle, serverToggle);
 		
