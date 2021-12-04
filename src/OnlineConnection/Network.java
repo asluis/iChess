@@ -18,9 +18,20 @@ public abstract class Network {
 		connect.setDaemon(true);
 	}
 	
+	/**
+	 * Starts a connection online.
+	 */
 	public void startConnection() throws Exception { connect.start(); }
+	
+	/**
+	 * Closes connection.
+	 */
 	public void closeConnection() throws Exception { connect.socket.close(); }
 	
+	/**
+	 * Sends any serializable data over network, we serialize MoveData and send that to handle the online chess game.
+	 * @param Serializable Data
+	 */
 	public void sendData(Serializable data) throws Exception { connect.out.writeObject(data); }
 	
 	protected abstract boolean isServer();
@@ -33,20 +44,24 @@ public abstract class Network {
         @Override
         public void run() {
             try (
+            	// If it is a server create a new ServerSocket with the port else else if not a server set to null.
                 ServerSocket server = isServer() ? new ServerSocket(getPort()) : null;
+            	// If socket is a server accept connection and create a new socket with ip adress and port.
                 Socket socket = isServer() ? server.accept() : new Socket(getIP(), getPort());
             	
+            	//Output stream to send objects.
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            	//Input stream to receive objects.
                 ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             ) {
-                onRecieveCallback.accept("Connection Established");
+                onRecieveCallback.accept("Connection successful");
                 this.socket = socket;
                 this.out = out;
-
-                // Disable message buffering
+                //Disables buffering and delay.	
                 socket.setTcpNoDelay(true);
 
                 while (true) {
+                	// Receive serializable data.
                     Serializable data = (Serializable) in.readObject();
                     onRecieveCallback.accept(data);
                 }
@@ -54,7 +69,7 @@ public abstract class Network {
             catch (ConnectException e) {
                 onRecieveCallback.accept("Error connecting to server");
             }
-            catch (Exception e) {
+            catch (Exception d) {
                 onRecieveCallback.accept("Connection closed");
             }
         }
