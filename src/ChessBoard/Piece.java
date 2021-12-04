@@ -31,6 +31,6 @@ public abstract class Piece {
 	}
 	
 	
-	protected abstract String getName();
+	public abstract String getName();
 
 }

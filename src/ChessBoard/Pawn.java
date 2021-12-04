@@ -5,6 +5,6 @@ public class Pawn extends Piece {
 		super(x);
 	}
 	
-	protected String getName() { return "Pawn"; }
+	public String getName() { return "Pawn"; }
 
 }

@@ -5,5 +5,5 @@ public class Queen extends Piece {
 		super(x);
 	}
 	
-	protected String getName() { return "Queen"; }
+	public String getName() { return "Queen"; }
 }

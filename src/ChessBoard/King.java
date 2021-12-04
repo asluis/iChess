@@ -6,6 +6,6 @@ public class King extends Piece {
 		super(x);
 	}
 	
-	protected String getName() { return "King"; }
+	public String getName() { return "King"; }
 
 }

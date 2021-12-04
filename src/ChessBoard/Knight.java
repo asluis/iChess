@@ -5,6 +5,6 @@ public class Knight extends Piece {
 		super(x);
 	}
 	
-	protected String getName() { return "Knight"; }
+	public String getName() { return "Knight"; }
 
 }

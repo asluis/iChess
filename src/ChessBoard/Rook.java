@@ -5,6 +5,6 @@ public class Rook extends Piece {
 		super(x);
 	}
 	
-	protected String getName() { return "Rook"; }
+	public String getName() { return "Rook"; }
 
 }

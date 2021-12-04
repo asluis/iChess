@@ -6,5 +6,5 @@ public class Bishop extends Piece {
 		super(x);
 	}
 	
-	protected String getName() { return "Bishop"; }
+	public String getName() { return "Bishop"; }
 }
