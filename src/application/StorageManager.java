@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @author Luis Alvarez Sanchez
  */
 public class StorageManager {
-	private static final int USER_NUM_ATTRIBUTES = 6; // username, password, wins, losses, device IP, public IP
+	private static final int USER_NUM_ATTRIBUTES = 4; // username, password, wins, losses
 	private static final String DEFAULT_FILE_NAME = "datastore.txt";
 
 	private String filename;
