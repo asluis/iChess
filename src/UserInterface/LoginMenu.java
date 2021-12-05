@@ -79,8 +79,7 @@ public class LoginMenu extends GridPane {
 				User user = User.findUser(ctrl.getDatastore(), username);
 				System.out.println("Adding " + user.getUsername() + " to controller");
 				user.setClient(clientToggle.isSelected() ? true : false);
-				user.setClientIP(clientIPString);
-				user.setServerIP(serverIPString);
+				user.setIP(clientIPString);
 				ctrl.setCurrUser(user);
 				ctrl.setScene(ctrl.chessBoard);
 				ctrl.startGame();

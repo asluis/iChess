@@ -57,7 +57,7 @@ public class Controller {
 	}
 
 	private Server createServer() {
-		return new Server(currUser.getServerIP(), 55555, data -> {
+		return new Server(currUser.getIP(), 55555, data -> {
 			Platform.runLater(() -> {
 				if (data instanceof MoveData)
 				{
@@ -69,7 +69,7 @@ public class Controller {
 
 	private Client createClient() {
 		chessBoard.setDisable(true);
-		return new Client(currUser.getClientIP(), 55555, data -> {
+		return new Client(currUser.getIP(), 55555, data -> {
 			Platform.runLater(() -> {
 				if (data instanceof MoveData)
 				{

@@ -8,8 +8,7 @@ public class User {
 	private int wins;
 	private int losses;
 	private boolean isClient;
-	private String clientIP;
-	private String serverIP;
+	private String ip;
 
 	/**
 	 * Full user constructor.
@@ -22,6 +21,7 @@ public class User {
 		this.wins = wins;
 		this.losses = losses;
 		this.isClient = isClient;
+		this.ip = null;
 	}
 	
 	/**
@@ -32,6 +32,7 @@ public class User {
 		username = uName;
 		wins = 0;
 		losses = 0;
+		ip = null;
 	}
 
 	/**
@@ -130,19 +131,12 @@ public class User {
 	public void setClient(boolean client) {
 		isClient = client;
 	}
-	public String getClientIP() {
-		return clientIP;
+
+	public String getIP() {
+		return ip;
 	}
 
-	public void setClientIP(String clientIP) {
-		this.clientIP = clientIP;
-	}
-
-	public String getServerIP() {
-		return serverIP;
-	}
-
-	public void setServerIP(String serverIP) {
-		this.serverIP = serverIP;
+	public void setIP(String ip) {
+		this.ip = ip;
 	}
 }
