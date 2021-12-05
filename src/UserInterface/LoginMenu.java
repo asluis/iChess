@@ -19,7 +19,6 @@ public class LoginMenu extends GridPane {
 	private ToggleButton clientToggle;
 	private ToggleButton serverToggle;
 	private TextField clientIP;
-	private TextField serverIP;
 	Controller ctrl;
 	
 	public LoginMenu(Controller controller) {
@@ -54,27 +53,22 @@ public class LoginMenu extends GridPane {
 		clientIP = new TextField();
 		clientIP.setPromptText("Enter Client IP");
 
-		serverIP = new TextField();
-		serverIP.setPromptText("Enter Server IP");
 
 		clientToggle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 			clientIP.setVisible(true);
-			serverIP.setVisible(true);
 		});
 
 		serverToggle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 			clientIP.setVisible(false);
-			serverIP.setVisible(false);
 		});
 		
 		loginConfirm.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-			String clientIPString = clientIP.getText();
-			String serverIPString = serverIP.getText();
+			String clientIPString = clientToggle.isSelected() ? clientIP.getText() : " ";
 			String username = usernameField.getText();
 			String password = passwordField.getText();
 
 			if(username.length() >= 1 && password.length() >= 1 && User.userExists(ctrl.getDatastore(), username)
-				&& clientIPString.length() > 0 && serverIPString.length() > 0){
+				&& clientIPString.length() > 0){
 
 				User user = User.findUser(ctrl.getDatastore(), username);
 				System.out.println("Adding " + user.getUsername() + " to controller");
@@ -100,7 +94,6 @@ public class LoginMenu extends GridPane {
 		add(passwordField, 2, 3);
 		add(loginConfirm, 1, 6);
 		add(hbox, 1, 7);
-		add(serverIP, 1, 10);
 		add(clientIP, 1, 11);
 	}
 }

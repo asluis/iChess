@@ -69,7 +69,7 @@ public class CreateAccountMenu extends GridPane {
 		createAccountConfirmation.setPrefSize(150, 50);
 
 		createAccountConfirmation.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-			String clientIPString = clientToggle.isSelected() ? clientIP.getText() : null;
+			String clientIPString = clientToggle.isSelected() ? clientIP.getText() : " ";
 
 			String uName = usernameField.getText();
 			String p1 = passwordField.getText();
